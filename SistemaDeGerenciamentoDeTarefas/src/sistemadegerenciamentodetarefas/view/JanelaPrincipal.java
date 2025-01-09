@@ -29,9 +29,9 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         tarefasMenu = new javax.swing.JMenu();
-        cadastro = new javax.swing.JMenuItem();
-        tarefasEditar = new javax.swing.JMenuItem();
-        tarefasDeletar = new javax.swing.JMenuItem();
+        cadastroTarefasAcademicas = new javax.swing.JMenuItem();
+        cadastroTarefasProfissionais = new javax.swing.JMenuItem();
+        sair = new javax.swing.JMenuItem();
         relatoriosMenu = new javax.swing.JMenu();
         ajudaMenu = new javax.swing.JMenu();
 
@@ -46,19 +46,29 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
         tarefasMenu.setText("Menu");
 
-        cadastro.setText("Cadastro");
-        cadastro.addActionListener(new java.awt.event.ActionListener() {
+        cadastroTarefasAcademicas.setText("Cadastro Tarefas Academicas");
+        cadastroTarefasAcademicas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadastroActionPerformed(evt);
+                cadastroTarefasAcademicasActionPerformed(evt);
             }
         });
-        tarefasMenu.add(cadastro);
+        tarefasMenu.add(cadastroTarefasAcademicas);
 
-        tarefasEditar.setText("Editar");
-        tarefasMenu.add(tarefasEditar);
+        cadastroTarefasProfissionais.setText("Cadastro Tarefas Profissionais");
+        cadastroTarefasProfissionais.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastroTarefasProfissionaisActionPerformed(evt);
+            }
+        });
+        tarefasMenu.add(cadastroTarefasProfissionais);
 
-        tarefasDeletar.setText("Deletar");
-        tarefasMenu.add(tarefasDeletar);
+        sair.setText("Sair");
+        sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sairActionPerformed(evt);
+            }
+        });
+        tarefasMenu.add(sair);
 
         jMenuBar1.add(tarefasMenu);
 
@@ -73,9 +83,17 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroActionPerformed
+    private void cadastroTarefasAcademicasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroTarefasAcademicasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cadastroActionPerformed
+    }//GEN-LAST:event_cadastroTarefasAcademicasActionPerformed
+
+    private void cadastroTarefasProfissionaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroTarefasProfissionaisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cadastroTarefasProfissionaisActionPerformed
+
+    private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -114,12 +132,12 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu ajudaMenu;
-    private javax.swing.JMenuItem cadastro;
+    private javax.swing.JMenuItem cadastroTarefasAcademicas;
+    private javax.swing.JMenuItem cadastroTarefasProfissionais;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu relatoriosMenu;
-    private javax.swing.JMenuItem tarefasDeletar;
-    private javax.swing.JMenuItem tarefasEditar;
+    private javax.swing.JMenuItem sair;
     private javax.swing.JMenu tarefasMenu;
     // End of variables declaration//GEN-END:variables
 }
