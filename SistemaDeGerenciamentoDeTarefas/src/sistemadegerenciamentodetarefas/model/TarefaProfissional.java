@@ -18,6 +18,10 @@ public class TarefaProfissional extends Tarefa {
         this.projeto = projeto;
     }
 
+    public TarefaProfissional(){
+        
+    }
+    
     public String getResponsavel() {
         return responsavel;
     }
