@@ -4,17 +4,44 @@
  */
 package sistemadegerenciamentodetarefas.view;
 
+import sistemadegerenciamentodetarefas.model.TarefaProfissional;
+import sistemadegerenciamentodetarefas.model.TarefaAcademica;
+import sistemadegerenciamentodetarefas.repository.Conexao;
+import sistemadegerenciamentodetarefas.repository.ConexaoMySQL;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author gusta
  */
 public class JanelaPrincipal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form JanelaPrincipal
-     */
+   JanelaCadastroTarefaAcademica janelaCadastroTarefaAcademica;
+   JanelaCadastroTarefaProfissional janelaCadastroTarefaProfissional;
+   public List<TarefaAcademica> lstTarefaAcademica;
+   public List<TarefaProfissional> lstTarefaProfissional;
+   public int ultimoId;
+   private Conexao conexao;
+   public ConexaoMySQL conexaoMySQL;
+    
     public JanelaPrincipal() {
         initComponents();
+        lstTarefaAcademica = new ArrayList<>();
+        lstTarefaProfissional = new ArrayList<>();
+        ultimoId = 0;
+        conexao = new Conexao (
+                "localhost",
+                "root",
+                "",
+                3306,
+                "cadastro"
+        );
+        conexaoMySQL = new ConexaoMySQL(conexao);
+        conexaoMySQL.conectar();
+        
     }
 
     /**
@@ -85,6 +112,10 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
     private void cadastroTarefasAcademicasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroTarefasAcademicasActionPerformed
         // TODO add your handling code here:
+        try{
+            janelaCadastroTarefaAcademica = JanelaCadastroTarefaAcademica.getInstancia(this);
+            
+        }
     }//GEN-LAST:event_cadastroTarefasAcademicasActionPerformed
 
     private void cadastroTarefasProfissionaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroTarefasProfissionaisActionPerformed
@@ -93,6 +124,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
     private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
         // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_sairActionPerformed
 
     /**

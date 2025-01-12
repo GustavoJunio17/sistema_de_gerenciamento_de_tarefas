@@ -12,6 +12,10 @@ public class TarefaAcademica extends Tarefa {
     private String materia;
     private String professor;
 
+    public TarefaAcademica(){
+        
+    }
+    
     public TarefaAcademica(String materia, String professor, int id, String nomeTarefa, 
                            String descricaoTarefa, String data, int status) {
         super(id, nomeTarefa, descricaoTarefa, data, status);

@@ -4,17 +4,30 @@
  */
 package sistemadegerenciamentodetarefas.view;
 
+import sistemadegerenciamentodetarefas.model.TarefaAcademica;
+import sistemadegerenciamentodetarefas.model.Tarefa;
+import sistemadegerenciamentodetarefas.model.TarefaProfissional;
+import sistemadegerenciamentodetarefas.repository.TarefaAcademicaRepository;
+import sistemadegerenciamentodetarefas.repository.TarefaProfissionalRepository;
+import javax.swing.JOptionPane;
+
+
+
 /**
  *
  * @author gusta
  */
 public class JanelaCadastroTarefaAcademica extends javax.swing.JPanel {
 
+    private static JanelaCadastroTarefaAcademica instancia;
+    private JanelaPrincipal janelaPrincipal;
     /**
      * Creates new form JanelaCadastro
      */
-    public JanelaCadastroTarefaAcademica() {
+    public JanelaCadastroTarefaAcademica(JanelaPrincipal janelaPrincipal) {
         initComponents();
+        this.janelaPrincipal = janelaPrincipal;
+        txtId.setText("0");
     }
 
     /**
@@ -38,13 +51,13 @@ public class JanelaCadastroTarefaAcademica extends javax.swing.JPanel {
         boxEmAndamento = new javax.swing.JCheckBox();
         boxNaoConcluida = new javax.swing.JCheckBox();
         boxConcluida = new javax.swing.JCheckBox();
-        btnAnterior = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txtStatus = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
+        btnAnterior = new javax.swing.JButton();
         btnProximo1 = new javax.swing.JButton();
+        btnFechar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
-        btnSalvar = new javax.swing.JButton();
         txtMateria = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtProfessor = new javax.swing.JTextField();
@@ -90,14 +103,6 @@ public class JanelaCadastroTarefaAcademica extends javax.swing.JPanel {
 
         boxConcluida.setText("Concluída");
 
-        btnAnterior.setText("<=");
-        btnAnterior.setActionCommand("<=");
-        btnAnterior.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAnteriorActionPerformed(evt);
-            }
-        });
-
         jLabel4.setText("Status");
 
         txtStatus.addActionListener(new java.awt.event.ActionListener() {
@@ -113,6 +118,13 @@ public class JanelaCadastroTarefaAcademica extends javax.swing.JPanel {
             }
         });
 
+        btnAnterior.setText("<=");
+        btnAnterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnteriorActionPerformed(evt);
+            }
+        });
+
         btnProximo1.setText("=>");
         btnProximo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,17 +132,17 @@ public class JanelaCadastroTarefaAcademica extends javax.swing.JPanel {
             }
         });
 
+        btnFechar.setText("Fechar");
+        btnFechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFecharActionPerformed(evt);
+            }
+        });
+
         btnExcluir.setText("Excluir");
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcluirActionPerformed(evt);
-            }
-        });
-
-        btnSalvar.setText("Salvar");
-        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvarActionPerformed(evt);
             }
         });
 
@@ -168,9 +180,9 @@ public class JanelaCadastroTarefaAcademica extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCadastrar)
                         .addGap(18, 18, 18)
-                        .addComponent(btnSalvar)
-                        .addGap(18, 18, 18)
                         .addComponent(btnExcluir)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnFechar)
                         .addGap(18, 18, 18)
                         .addComponent(btnProximo1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -267,8 +279,8 @@ public class JanelaCadastroTarefaAcademica extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAnterior)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnSalvar)
                         .addComponent(btnExcluir)
+                        .addComponent(btnFechar)
                         .addComponent(btnProximo1)
                         .addComponent(btnCadastrar)))
                 .addGap(17, 17, 17))
@@ -293,6 +305,26 @@ public class JanelaCadastroTarefaAcademica extends javax.swing.JPanel {
 
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
         // TODO add your handling code here:
+        limparJanela();
+        TarefaAcademicaRepository tarefaAcademicaRepository = new TarefaAcademicaRepository();
+        TarefaAcademica tarefaAcademica = tarefaAcademicaRepository.selecionar(
+                janelaPrincipal.conexaoMySQL.connection,
+                "<",
+                Integer.parseInt(txtId.getText()));
+        if(tarefaAcademica != null){
+            //passar os dados para a tela:
+            txtNomeTarefa.setText(tarefaAcademica.getNomeTarefa());
+            txtDescricao.setText(tarefaAcademica.getDescricaoTarefa());
+            txtData.setText(tarefaAcademica.getData());
+            txtStatus.setText(String.valueOf(tarefaAcademica.getStatus()));
+            txtMateria.setText(tarefaAcademica.getMateria());
+            txtProfessor.setText(tarefaAcademica.getProfessor());
+            txtId.setText(String.valueOf(tarefaAcademica.getId()));
+        }else{
+            limparJanela();
+            txtId.setText("0");
+        }
+        
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
     private void txtStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStatusActionPerformed
@@ -301,19 +333,75 @@ public class JanelaCadastroTarefaAcademica extends javax.swing.JPanel {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         // TODO add your handling code here:
+        int id = Integer.parseInt(txtId.getText());
+        TarefaAcademica tarefaAcademica = new TarefaAcademica();
+        tarefaAcademica.setNomeTarefa(txtNomeTarefa.getText());
+        tarefaAcademica.setDescricaoTarefa(txtDescricao.getText());
+        tarefaAcademica.setData(txtData.getText());
+        tarefaAcademica.setStatus(Integer.parseInt(txtStatus.getText()));
+        tarefaAcademica.setMateria(txtMateria.getText());
+        tarefaAcademica.setProfessor(txtProfessor.getText());
+        tarefaAcademica.setId(id);
+        
+        //inserir tarefa academica no banco de dados
+        TarefaAcademicaRepository tarefaAcademicaRepository = new TarefaAcademicaRepository();
+        boolean retornoBanco = false;
+        if(Integer.parseInt(txtId.getText()) == 0){
+            //inserir
+            retornoBanco = tarefaAcademicaRepository.inserir(
+                    janelaPrincipal.conexaoMySQL.connection,
+                    tarefaAcademica);
+        }else{
+            //atualizar
+            retornoBanco = tarefaAcademicaRepository.atualizar(
+                    janelaPrincipal.conexaoMySQL.connection,
+                    tarefaAcademica
+            );
+        }
+        if(retornoBanco){
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Cadastro atualizado com sucesso!",
+                    "Tela de cadastro tarefas academicas",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+            //limpar a janela
+            limparJanela();
+        }
+
+        
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnProximo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximo1ActionPerformed
         // TODO add your handling code here:
+        limparJanela();
+        TarefaAcademicaRepository tarefaAcademicaRepository = new TarefaAcademicaRepository();
+        TarefaAcademica tarefaAcademica = tarefaAcademicaRepository.selecionar(
+                janelaPrincipal.conexaoMySQL.connection,
+                ">",
+                Integer.parseInt(txtId.getText()));
+        if(tarefaAcademica != null){
+            //passar os dados para a tela:
+            txtNomeTarefa.setText(tarefaAcademica.getNomeTarefa());
+            txtDescricao.setText(tarefaAcademica.getDescricaoTarefa());
+            txtData.setText(tarefaAcademica.getData());
+            txtStatus.setText(String.valueOf(tarefaAcademica.getStatus()));
+            txtMateria.setText(tarefaAcademica.getMateria());
+            txtProfessor.setText(tarefaAcademica.getProfessor());
+            txtId.setText(String.valueOf(tarefaAcademica.getId()));
+        }else{
+            limparJanela();
+            txtId.setText("0");
+        }
     }//GEN-LAST:event_btnProximo1ActionPerformed
+
+    private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFecharActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnExcluirActionPerformed
-
-    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void txtMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMateriaActionPerformed
         // TODO add your handling code here:
@@ -327,6 +415,15 @@ public class JanelaCadastroTarefaAcademica extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdActionPerformed
 
+    private void limparJanela(){
+    txtNomeTarefa.setText("");
+    txtDescricao.setText("");
+    txtData.setText("");
+    txtStatus.setText("");
+    txtMateria.setText("");
+    txtProfessor.setText("");
+    txtNomeTarefa.requestFocus();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox boxConcluida;
@@ -335,8 +432,8 @@ public class JanelaCadastroTarefaAcademica extends javax.swing.JPanel {
     private javax.swing.JButton btnAnterior;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnFechar;
     private javax.swing.JButton btnProximo1;
-    private javax.swing.JButton btnSalvar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JLabel jLabel1;
