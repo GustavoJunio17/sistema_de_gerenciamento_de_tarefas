@@ -6,8 +6,12 @@
             <file>file:/D:/Programacao/gerenciamento_de_tarefas/SistemaDeGerenciamentoDeTarefas/src/sistemadegerenciamentodetarefas/repository/TarefaAcademicaRepository.java</file>
             <file>file:/D:/Programacao/gerenciamento_de_tarefas/SistemaDeGerenciamentoDeTarefas/src/sistemadegerenciamentodetarefas/repository/Conexao.java</file>
             <file>file:/D:/Programacao/gerenciamento_de_tarefas/SistemaDeGerenciamentoDeTarefas/src/sistemadegerenciamentodetarefas/model/TarefaProfissional.java</file>
+            <file>file:/D:/Programacao/gerenciamento_de_tarefas/SistemaDeGerenciamentoDeTarefas/src/sistemadegerenciamentodetarefas/model/TarefaAcademica.java</file>
             <file>file:/D:/Programacao/gerenciamento_de_tarefas/SistemaDeGerenciamentoDeTarefas/src/sistemadegerenciamentodetarefas/repository/TarefaProfissionalRepository.java</file>
             <file>file:/D:/Programacao/gerenciamento_de_tarefas/SistemaDeGerenciamentoDeTarefas/src/sistemadegerenciamentodetarefas/repository/ConexaoMySQL.java</file>
+            <file>file:/D:/Programacao/gerenciamento_de_tarefas/SistemaDeGerenciamentoDeTarefas/src/sistemadegerenciamentodetarefas/view/JanelaPrincipal.java</file>
+            <file>file:/D:/Programacao/gerenciamento_de_tarefas/SistemaDeGerenciamentoDeTarefas/src/sistemadegerenciamentodetarefas/model/Tarefa.java</file>
+            <file>file:/D:/Programacao/gerenciamento_de_tarefas/SistemaDeGerenciamentoDeTarefas/src/sistemadegerenciamentodetarefas/view/JanelaCadastroTarefaAcademica.java</file>
         </group>
     </open-files>
 </project-private>

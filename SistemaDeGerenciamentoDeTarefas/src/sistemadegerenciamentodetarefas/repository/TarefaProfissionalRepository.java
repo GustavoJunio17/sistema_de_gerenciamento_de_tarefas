@@ -29,7 +29,7 @@ public class TarefaProfissionalRepository implements Crud<TarefaProfissional> {
     public boolean inserir(Connection connection, TarefaProfissional tarefa) {
         PreparedStatement stmt = null;
         try{
-            String comando = "INSERT INTO cadastro_tarefa_profissional(nome_tarefa, descricao, data, status, responsavel, projeto)" +
+            String comando = "INSERT INTO tarefa_profissional(nome_tarefa, descricao, data, status, responsavel, projeto)" +
                              "VALUES(?, ?, ?, ?, ?, ?)";
             stmt = connection.prepareStatement(comando);
             stmt.setString(1, tarefa.getNomeTarefa());
@@ -57,7 +57,7 @@ public class TarefaProfissionalRepository implements Crud<TarefaProfissional> {
     public boolean atualizar(Connection connection, TarefaProfissional tarefa) {
         PreparedStatement stmt = null;
         try{
-            String comando = "UPDATE cadastro_tarefa_profissional SET " +
+            String comando = "UPDATE tarefa_profissional SET " +
                              "nome_tarefa = ?, descricao = ?, data = ?, status = ?, responsavel = ?, projeto = ?" +
                              "WHERE id = ?";
             stmt = connection.prepareStatement(comando);
@@ -87,7 +87,7 @@ public class TarefaProfissionalRepository implements Crud<TarefaProfissional> {
     public boolean deletar(Connection connection, TarefaProfissional tarefa) {
         PreparedStatement stmt = null;
         try{
-            String comando = "DELETE FROM cadastro_tarefa_profissional " + 
+            String comando = "DELETE FROM tarefa_profissional " + 
                              "WHERE id = ?";
             stmt = connection.prepareStatement(comando);
             stmt.setInt(1, tarefa.getId());
@@ -111,7 +111,7 @@ public class TarefaProfissionalRepository implements Crud<TarefaProfissional> {
         try{
             TarefaProfissional tarefa = new TarefaProfissional();
             PreparedStatement stmt = null;
-            String comando = "SELECT * FROM cadastro_tarefa_profissioanl WHERE id " +
+            String comando = "SELECT * FROM tarefa_profissional WHERE id " +
                              operador + "? ";
             if(operador.equals("<"))
                 comando += " ORDER BY id DESC";

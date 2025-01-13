@@ -47,7 +47,7 @@ public class ConexaoMySQL {
                 );
                 return false;
             }
-    }else{
+        }else{
             return false;
         }
     }
@@ -55,7 +55,7 @@ public class ConexaoMySQL {
     public boolean insert(TarefaProfissional tarefa){
         PreparedStatement stmt = null;
         try{
-            String comando = "INSET INTO cadastro_tarefa_profissioanl(nome_tarefa, descricao, data, status, responsalve, projeto)" +
+            String comando = "INSET INTO tarefa_profissioanl(nome_tarefa, descricao, data, status, responsalve, projeto)" +
                              "VALUES(?, ?, ?, ?, ?, ?)";
             stmt = connection.prepareStatement(comando);
             stmt.setString(1, tarefa.getNomeTarefa());
@@ -64,15 +64,12 @@ public class ConexaoMySQL {
             stmt.setInt(4, tarefa.getStatus());
             stmt.setString(5, tarefa.getResponsavel());
             stmt.setString(6, tarefa.getProjeto());
-            
+
             stmt.executeUpdate();
         }catch(Exception ex){
             System.out.println(ex.getMessage());
         }
         return false;
     }
-    
-    
-    
     
 }

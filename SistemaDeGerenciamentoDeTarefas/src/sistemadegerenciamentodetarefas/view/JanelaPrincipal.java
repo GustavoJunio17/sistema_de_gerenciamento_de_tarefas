@@ -35,9 +35,9 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         conexao = new Conexao (
                 "localhost",
                 "root",
-                "",
+                "02172527Gus@",
                 3306,
-                "cadastro"
+                "cadastro_tarefas"
         );
         conexaoMySQL = new ConexaoMySQL(conexao);
         conexaoMySQL.conectar();
@@ -112,10 +112,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
     private void cadastroTarefasAcademicasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroTarefasAcademicasActionPerformed
         // TODO add your handling code here:
-        try{
-            janelaCadastroTarefaAcademica = JanelaCadastroTarefaAcademica.getInstancia(this);
-            
-        }
+        
     }//GEN-LAST:event_cadastroTarefasAcademicasActionPerformed
 
     private void cadastroTarefasProfissionaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroTarefasProfissionaisActionPerformed
