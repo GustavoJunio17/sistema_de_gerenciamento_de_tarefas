@@ -112,6 +112,20 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
     private void cadastroTarefasAcademicasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroTarefasAcademicasActionPerformed
         // TODO add your handling code here:
+        try{
+            janelaCadastroTarefaAcademica = JanelaCadastroTarefaAcademica.getInstancia(this);
+            if(!desktopPane.isAncestorOf(janelaCadastroTarefaAcademica)){
+                desktopPane.add("JanelaCadastro", janelaCadastroTarefaAcademica);
+                janelaCadastroTarefaAcademica.setDefaultCloseOperation(JInternalFrame.DO_NOTHING_ON_CLOSE);
+            }
+            
+            janelaCadastroTarefaAcademica.setSelected(true);
+        }catch(Exception ex){
+            JOptionPane.showConfirmDialog(null, 
+                    "Erro ao abrir a tela de cadastro de clientes: ",
+                    "Cadastro de clientes",
+                    JOptionPane.ERROR_MESSAGE);
+        }
         
     }//GEN-LAST:event_cadastroTarefasAcademicasActionPerformed
 

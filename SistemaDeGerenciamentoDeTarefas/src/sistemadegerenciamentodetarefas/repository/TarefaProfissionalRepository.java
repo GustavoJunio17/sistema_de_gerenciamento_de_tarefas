@@ -15,6 +15,7 @@ import java.sql.Connection;
  *
  * @author gusta
  */
+
 public class TarefaProfissionalRepository implements Crud<TarefaProfissional> {
     
     public TarefaProfissionalRepository(){

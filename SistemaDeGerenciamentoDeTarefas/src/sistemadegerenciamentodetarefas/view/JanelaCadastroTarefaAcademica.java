@@ -424,6 +424,12 @@ public class JanelaCadastroTarefaAcademica extends javax.swing.JPanel {
     txtProfessor.setText("");
     txtNomeTarefa.requestFocus();
     }
+    
+    public static JanelaCadastroTarefaAcademica getInstancia(JanelaPrincipal janelaPrincipal){
+        if(instancia == null)
+            instancia = new JanelaCadastroTarefaAcademica(janelaPrincipal);
+        return instancia;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox boxConcluida;
