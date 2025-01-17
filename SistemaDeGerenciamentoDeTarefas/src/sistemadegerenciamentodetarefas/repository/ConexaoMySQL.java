@@ -61,7 +61,7 @@ public class ConexaoMySQL {
             stmt.setString(1, tarefa.getNomeTarefa());
             stmt.setString(2, tarefa.getDescricaoTarefa());
             stmt.setString(3, tarefa.getData());
-            stmt.setInt(4, tarefa.getStatus());
+            stmt.setString(4, tarefa.getStatus());
             stmt.setString(5, tarefa.getResponsavel());
             stmt.setString(6, tarefa.getProjeto());
 

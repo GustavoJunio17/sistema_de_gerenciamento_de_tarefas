@@ -12,7 +12,7 @@ public class TarefaProfissional extends Tarefa {
     private String responsavel;
     private String projeto;
 
-    public TarefaProfissional(String responsavel, String projeto, int id, String nomeTarefa, String descricaoTarefa, String data, int status) {
+    public TarefaProfissional(String responsavel, String projeto, int id, String nomeTarefa, String descricaoTarefa, String data, String status) {
         super(id, nomeTarefa, descricaoTarefa, data, status);
         this.responsavel = responsavel;
         this.projeto = projeto;

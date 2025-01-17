@@ -66,6 +66,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gerenciamento de Tarefas");
         setBackground(new java.awt.Color(255, 255, 255));
+        setMinimumSize(new java.awt.Dimension(900, 700));
         getContentPane().add(desktopPane, java.awt.BorderLayout.CENTER);
 
         tarefasMenu.setText("Menu");

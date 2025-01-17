@@ -17,7 +17,7 @@ public class TarefaAcademica extends Tarefa {
     }
     
     public TarefaAcademica(String materia, String professor, int id, String nomeTarefa, 
-                           String descricaoTarefa, String data, int status) {
+                           String descricaoTarefa, String data, String status) {
         super(id, nomeTarefa, descricaoTarefa, data, status);
         this.materia = materia;
         this.professor = professor;

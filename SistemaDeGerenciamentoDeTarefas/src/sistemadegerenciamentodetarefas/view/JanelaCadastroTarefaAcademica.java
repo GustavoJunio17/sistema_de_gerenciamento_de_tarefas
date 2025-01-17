@@ -61,6 +61,9 @@ public class JanelaCadastroTarefaAcademica extends javax.swing.JInternalFrame {
         boxNaoConcluida = new javax.swing.JCheckBox();
         txtProfessor = new javax.swing.JTextField();
 
+        setMinimumSize(new java.awt.Dimension(422, 384));
+        setVisible(true);
+
         boxConcluida.setText("Concluída");
 
         jLabel6.setText("Professor");
@@ -75,6 +78,7 @@ public class JanelaCadastroTarefaAcademica extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Nome da Tarefa");
 
+        txtStatus.setEditable(false);
         txtStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtStatusActionPerformed(evt);
@@ -125,7 +129,7 @@ public class JanelaCadastroTarefaAcademica extends javax.swing.JInternalFrame {
             }
         });
 
-        txtData.setText("dd/mm/aaaa");
+        txtData.setToolTipText("");
         txtData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDataActionPerformed(evt);
@@ -302,7 +306,7 @@ public class JanelaCadastroTarefaAcademica extends javax.swing.JInternalFrame {
         tarefaAcademica.setNomeTarefa(txtNomeTarefa.getText());
         tarefaAcademica.setDescricaoTarefa(txtDescricao.getText());
         tarefaAcademica.setData(txtData.getText());
-        tarefaAcademica.setStatus(Integer.parseInt(txtStatus.getText()));
+        tarefaAcademica.setStatus(txtStatus.getText());
         tarefaAcademica.setMateria(txtMateria.getText());
         tarefaAcademica.setProfessor(txtProfessor.getText());
         tarefaAcademica.setId(id);

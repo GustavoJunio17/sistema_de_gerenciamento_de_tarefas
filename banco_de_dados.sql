@@ -7,7 +7,7 @@ CREATE TABLE `cadastro_tarefas`.`tarefa_academica` (
   `nome_tarefa` VARCHAR(100)     NOT NULL                COMMENT '',
   `descricao`   VARCHAR(100)     NOT NULL                COMMENT '',
   `data`        VARCHAR(100)     NULL                    COMMENT '',
-  `status`      INT              NULL                    COMMENT '',
+  `status`      VARCHAR(100)     NULL                    COMMENT '',
   `materia`     VARCHAR(100)     NULL                    COMMENT '',
   `professor`   VARCHAR(100)     NULL                    COMMENT '',
   PRIMARY KEY (`id`)                                     COMMENT '');
@@ -17,10 +17,13 @@ CREATE TABLE `cadastro_tarefas`.`tarefa_profissional` (
   `nome_tarefa` VARCHAR(100)     NOT NULL                COMMENT '',
   `descricao`   VARCHAR(100)     NOT NULL                COMMENT '',
   `data`        VARCHAR(100)     NULL                    COMMENT '',
-  `status`      INT              NULL                    COMMENT '',
+  `status`      VARCHAR(100)     NULL                    COMMENT '',
   `responsavel` VARCHAR(100)     NULL                    COMMENT '',
   `projeto`     VARCHAR(100)     NULL                    COMMENT '',
   PRIMARY KEY (`id`)                                     COMMENT '');
 
 select * from tarefa_academica;
-SELECT * FROM tarefa_academica WHERE id > 1
+SELECT * FROM tarefa_academica WHERE id > 1;
+
+select * from tarefa_profissional;
+DROP DATABASE cadastro_tarefas;

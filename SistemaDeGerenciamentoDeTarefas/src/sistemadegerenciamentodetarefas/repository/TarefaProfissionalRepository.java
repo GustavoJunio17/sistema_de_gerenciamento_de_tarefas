@@ -36,7 +36,7 @@ public class TarefaProfissionalRepository implements Crud<TarefaProfissional> {
             stmt.setString(1, tarefa.getNomeTarefa());
             stmt.setString(2, tarefa.getDescricaoTarefa());
             stmt.setString(3, tarefa.getData());
-            stmt.setInt(4, tarefa.getStatus());
+            stmt.setString(4, tarefa.getStatus());
             stmt.setString(5, tarefa.getResponsavel());
             stmt.setString(6, tarefa.getProjeto());
             
@@ -65,7 +65,7 @@ public class TarefaProfissionalRepository implements Crud<TarefaProfissional> {
             stmt.setString(1, tarefa.getNomeTarefa());
             stmt.setString(2, tarefa.getDescricaoTarefa());
             stmt.setString(3, tarefa.getData());
-            stmt.setInt(4, tarefa.getStatus());
+            stmt.setString(4, tarefa.getStatus());
             stmt.setString(5, tarefa.getResponsavel());
             stmt.setString(6, tarefa.getProjeto());
             stmt.setInt(7, tarefa.getId());
@@ -125,7 +125,7 @@ public class TarefaProfissionalRepository implements Crud<TarefaProfissional> {
                     tarefa.setNomeTarefa(res.getString("nome_tarefa"));
                     tarefa.setDescricaoTarefa(res.getString("descricao"));
                     tarefa.setData(res.getString("data"));
-                    tarefa.setStatus(Integer.parseInt(res.getString("status")));
+                    tarefa.setStatus(res.getString("status"));
                     tarefa.setResponsavel(res.getString("responsavel"));
                     tarefa.setProjeto(res.getString("projeto"));
                     break;

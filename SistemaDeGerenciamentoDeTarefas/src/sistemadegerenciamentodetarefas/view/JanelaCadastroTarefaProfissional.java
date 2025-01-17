@@ -5,14 +5,12 @@
 package sistemadegerenciamentodetarefas.view;
 
 import sistemadegerenciamentodetarefas.model.TarefaProfissional;
-import sistemadegerenciamentodetarefas.model.Tarefa;
-import sistemadegerenciamentodetarefas.model.TarefaProfissional;
 import sistemadegerenciamentodetarefas.repository.TarefaProfissionalRepository;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author gusta
+ * @author gustavo
  */
 
 public class JanelaCadastroTarefaProfissional extends javax.swing.JInternalFrame {
@@ -51,14 +49,16 @@ public class JanelaCadastroTarefaProfissional extends javax.swing.JInternalFrame
         txtDescricao = new javax.swing.JTextField();
         btnProximo1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        btnExcluir = new javax.swing.JButton();
+        btnFechar = new javax.swing.JButton();
         txtData = new javax.swing.JTextField();
-        btnSalvar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         txtProjeto = new javax.swing.JTextField();
         boxEmAndamento = new javax.swing.JCheckBox();
         jLabel5 = new javax.swing.JLabel();
         boxNaoConcluida = new javax.swing.JCheckBox();
+
+        setVisible(true);
 
         txtResponsavel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,6 +77,7 @@ public class JanelaCadastroTarefaProfissional extends javax.swing.JInternalFrame
             }
         });
 
+        txtId.setEditable(false);
         txtId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdActionPerformed(evt);
@@ -93,6 +94,7 @@ public class JanelaCadastroTarefaProfissional extends javax.swing.JInternalFrame
             }
         });
 
+        txtStatus.setEditable(false);
         txtStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtStatusActionPerformed(evt);
@@ -123,24 +125,33 @@ public class JanelaCadastroTarefaProfissional extends javax.swing.JInternalFrame
 
         jLabel3.setText("Data");
 
-        btnExcluir.setText("Excluir");
-        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+        btnFechar.setText("Fechar");
+        btnFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirActionPerformed(evt);
+                btnFecharActionPerformed(evt);
             }
         });
 
         txtData.setText("dd/mm/aaaa");
+        txtData.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtData.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtDataFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDataFocusLost(evt);
+            }
+        });
         txtData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDataActionPerformed(evt);
             }
         });
 
-        btnSalvar.setText("Salvar");
-        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvarActionPerformed(evt);
+                btnExcluirActionPerformed(evt);
             }
         });
 
@@ -173,9 +184,9 @@ public class JanelaCadastroTarefaProfissional extends javax.swing.JInternalFrame
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCadastrar)
                         .addGap(18, 18, 18)
-                        .addComponent(btnSalvar)
-                        .addGap(18, 18, 18)
                         .addComponent(btnExcluir)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnFechar)
                         .addGap(18, 18, 18)
                         .addComponent(btnProximo1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -216,12 +227,12 @@ public class JanelaCadastroTarefaProfissional extends javax.swing.JInternalFrame
                 .addGap(6, 6, 6))
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
-                .addComponent(boxNaoConcluida)
+                .addComponent(boxNaoConcluida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(boxEmAndamento, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(boxEmAndamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(boxConcluida, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(boxConcluida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(54, 54, 54))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,8 +283,8 @@ public class JanelaCadastroTarefaProfissional extends javax.swing.JInternalFrame
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAnterior)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnSalvar)
                         .addComponent(btnExcluir)
+                        .addComponent(btnFechar)
                         .addComponent(btnProximo1)
                         .addComponent(btnCadastrar)))
                 .addGap(17, 17, 17))
@@ -299,13 +310,13 @@ public class JanelaCadastroTarefaProfissional extends javax.swing.JInternalFrame
             txtNomeTarefa.setText(tarefaProfissional.getNomeTarefa());
             txtDescricao.setText(tarefaProfissional.getDescricaoTarefa());
             txtData.setText(tarefaProfissional.getData());
-            txtStatus.setText(String.valueOf(tarefaProfissional.getStatus()));
+            txtStatus.setText(tarefaProfissional.getStatus());
             txtResponsavel.setText(tarefaProfissional.getResponsavel());
             txtProjeto.setText(tarefaProfissional.getProjeto());
             txtId.setText(String.valueOf(tarefaProfissional.getId()));
         }else{
             limparJanela();
-            txtId.setText("0");
+            txtId.setText("-");
         }
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
@@ -328,7 +339,15 @@ public class JanelaCadastroTarefaProfissional extends javax.swing.JInternalFrame
         tarefaProfissional.setNomeTarefa(txtNomeTarefa.getText());
         tarefaProfissional.setDescricaoTarefa(txtDescricao.getText());
         tarefaProfissional.setData(txtData.getText());
-        tarefaProfissional.setStatus(Integer.parseInt(txtStatus.getText()));
+        if(boxNaoConcluida.isSelected()){
+                tarefaProfissional.setStatus("Não concluída");
+            }
+        if(boxEmAndamento.isSelected()){
+                tarefaProfissional.setStatus("Em andamento");
+            }
+        if(boxConcluida.isSelected()){
+                tarefaProfissional.setStatus("Concluída");
+            }
         tarefaProfissional.setResponsavel(txtResponsavel.getText());
         tarefaProfissional.setProjeto(txtProjeto.getText());
         tarefaProfissional.setId(id);
@@ -375,27 +394,61 @@ public class JanelaCadastroTarefaProfissional extends javax.swing.JInternalFrame
             txtNomeTarefa.setText(tarefaProfissional.getNomeTarefa());
             txtDescricao.setText(tarefaProfissional.getDescricaoTarefa());
             txtData.setText(tarefaProfissional.getData());
-            txtStatus.setText(String.valueOf(tarefaProfissional.getStatus()));
+            txtStatus.setText(tarefaProfissional.getStatus());
             txtResponsavel.setText(tarefaProfissional.getResponsavel());
             txtProjeto.setText(tarefaProfissional.getProjeto());
             txtId.setText(String.valueOf(tarefaProfissional.getId()));
         }else{
             limparJanela();
-            txtId.setText("0");
+            txtId.setText("-");
         }
     }//GEN-LAST:event_btnProximo1ActionPerformed
 
-    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+    private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnExcluirActionPerformed
+        fecharJanela();
+    }//GEN-LAST:event_btnFecharActionPerformed
 
     private void txtDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDataActionPerformed
 
-    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalvarActionPerformed
+        if(Integer.parseInt(txtId.getText()) > 0){
+            int resposta = JOptionPane.showConfirmDialog(
+                    this,
+                    "Deseja realmente excluir esse registro?",
+                    "Excluir?",
+                    JOptionPane.YES_NO_OPTION
+            );
+            if(resposta == JOptionPane.YES_OPTION){
+                //excluir registro:
+                int id = Integer.parseInt(txtId.getText());
+                //janelaPrincipal.lstPessoa.remove(id-1);
+                //janelaPrincipal.ultimoId -=1;
+                TarefaProfissional tarefa = new TarefaProfissional();
+                tarefa.setId(id);
+                TarefaProfissionalRepository tarefaProfissionalRepository = new TarefaProfissionalRepository();
+                boolean retornoBanco = tarefaProfissionalRepository.deletar(
+                        janelaPrincipal.conexaoMySQL.connection,
+                        tarefa
+                );
+                if(retornoBanco){
+                    limparJanela();
+                    txtId.setText("0");
+                    //atualizaIdLista();
+                    JOptionPane.showMessageDialog(
+                            this,
+                            "Registro excluído com sucesso!",
+                            "Tela de cadastro",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+                }                
+                
+            }            
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void txtProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProjetoActionPerformed
         // TODO add your handling code here:
@@ -404,6 +457,22 @@ public class JanelaCadastroTarefaProfissional extends javax.swing.JInternalFrame
     private void boxNaoConcluidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxNaoConcluidaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_boxNaoConcluidaActionPerformed
+
+    private void txtDataFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDataFocusGained
+        // TODO add your handling code here:
+        if (txtData.getText().equals("dd/mm/aaaa")) {
+            txtData.setText("");
+       }
+
+    }//GEN-LAST:event_txtDataFocusGained
+
+    private void txtDataFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDataFocusLost
+        // TODO add your handling code here:
+        if (txtData.getText().isEmpty()) {
+            txtData.setText("dd/mm/aaaa"); // Reinsere o placeholder
+        }
+
+    }//GEN-LAST:event_txtDataFocusLost
 
     private void limparJanela(){
         txtNomeTarefa.setText("");
@@ -433,8 +502,8 @@ public class JanelaCadastroTarefaProfissional extends javax.swing.JInternalFrame
     private javax.swing.JButton btnAnterior;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnFechar;
     private javax.swing.JButton btnProximo1;
-    private javax.swing.JButton btnSalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

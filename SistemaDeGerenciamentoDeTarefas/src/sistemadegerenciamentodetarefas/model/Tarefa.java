@@ -13,9 +13,9 @@ public class Tarefa {
     private String nomeTarefa;
     private String descricaoTarefa;
     private String data;
-    private int status;
+    private String status;
 
-    public Tarefa(int id, String nomeTarefa, String descricaoTarefa, String data, int status) {
+    public Tarefa(int id, String nomeTarefa, String descricaoTarefa, String data, String status) {
         this.id = id;
         this.nomeTarefa = nomeTarefa;
         this.descricaoTarefa = descricaoTarefa;
@@ -59,11 +59,11 @@ public class Tarefa {
         this.data = data;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
