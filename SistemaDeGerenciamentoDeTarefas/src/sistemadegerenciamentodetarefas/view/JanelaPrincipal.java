@@ -13,6 +13,7 @@ import java.util.List;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
+
 /**
  *
  * @author gusta
@@ -53,7 +54,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        desktopPane = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         tarefasMenu = new javax.swing.JMenu();
         cadastroTarefasAcademicas = new javax.swing.JMenuItem();
@@ -65,11 +66,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gerenciamento de Tarefas");
         setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\gusta\\OneDrive\\Pictures\\atom_icon.png")); // NOI18N
-        getContentPane().add(jLabel1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(desktopPane, java.awt.BorderLayout.CENTER);
 
         tarefasMenu.setText("Menu");
 
@@ -131,6 +128,20 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
     private void cadastroTarefasProfissionaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroTarefasProfissionaisActionPerformed
         // TODO add your handling code here:
+        try{
+            janelaCadastroTarefaProfissional = JanelaCadastroTarefaProfissional.getInstancia(this);
+            if(!desktopPane.isAncestorOf(janelaCadastroTarefaProfissional)){
+                desktopPane.add("JanelaCadastro", janelaCadastroTarefaProfissional);
+                janelaCadastroTarefaProfissional.setDefaultCloseOperation(JInternalFrame.DO_NOTHING_ON_CLOSE);
+            }
+            
+            janelaCadastroTarefaProfissional.setSelected(true);
+        }catch(Exception ex){
+            JOptionPane.showConfirmDialog(null, 
+                    "Erro ao abrir a tela de cadastro de clientes: ",
+                    "Cadastro de clientes",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_cadastroTarefasProfissionaisActionPerformed
 
     private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
@@ -177,7 +188,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu ajudaMenu;
     private javax.swing.JMenuItem cadastroTarefasAcademicas;
     private javax.swing.JMenuItem cadastroTarefasProfissionais;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu relatoriosMenu;
     private javax.swing.JMenuItem sair;

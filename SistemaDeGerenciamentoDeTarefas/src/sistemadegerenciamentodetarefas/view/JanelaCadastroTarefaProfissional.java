@@ -1,20 +1,31 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package sistemadegerenciamentodetarefas.view;
+
+import sistemadegerenciamentodetarefas.model.TarefaProfissional;
+import sistemadegerenciamentodetarefas.model.Tarefa;
+import sistemadegerenciamentodetarefas.model.TarefaProfissional;
+import sistemadegerenciamentodetarefas.repository.TarefaProfissionalRepository;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author gusta
  */
-public class JanelaCadastroTarefaProfissional extends javax.swing.JPanel {
 
+public class JanelaCadastroTarefaProfissional extends javax.swing.JInternalFrame {
+
+    private static JanelaCadastroTarefaProfissional instancia;
+    private JanelaPrincipal janelaPrincipal;
     /**
-     * Creates new form JanelaCadastro
+     * Creates new form JanelaCadastroTarefaProfissional
      */
-    public JanelaCadastroTarefaProfissional() {
+    public JanelaCadastroTarefaProfissional(JanelaPrincipal janelaPrincipal) {
         initComponents();
+        this.janelaPrincipal = janelaPrincipal;
+        txtId.setText("0");
     }
 
     /**
@@ -26,69 +37,38 @@ public class JanelaCadastroTarefaProfissional extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
-        jLabel1 = new javax.swing.JLabel();
-        txtNomeTarefa = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        txtDescricao = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txtData = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
-        boxEmAndamento = new javax.swing.JCheckBox();
-        boxNaoConcluida = new javax.swing.JCheckBox();
-        boxConcluida = new javax.swing.JCheckBox();
-        btnAnterior = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        txtStatus = new javax.swing.JTextField();
-        btnCadastrar = new javax.swing.JButton();
-        btnProximo1 = new javax.swing.JButton();
-        btnExcluir = new javax.swing.JButton();
-        btnSalvar = new javax.swing.JButton();
-        txtProjeto = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         txtResponsavel = new javax.swing.JTextField();
+        boxConcluida = new javax.swing.JCheckBox();
         jLabel6 = new javax.swing.JLabel();
+        btnAnterior = new javax.swing.JButton();
         txtId = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtNomeTarefa = new javax.swing.JTextField();
+        txtStatus = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        btnCadastrar = new javax.swing.JButton();
+        txtDescricao = new javax.swing.JTextField();
+        btnProximo1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        btnExcluir = new javax.swing.JButton();
+        txtData = new javax.swing.JTextField();
+        btnSalvar = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        txtProjeto = new javax.swing.JTextField();
+        boxEmAndamento = new javax.swing.JCheckBox();
+        jLabel5 = new javax.swing.JLabel();
+        boxNaoConcluida = new javax.swing.JCheckBox();
 
-        setMinimumSize(new java.awt.Dimension(410, 341));
-        setName("Janela Cadastro Tarefa Academica"); // NOI18N
-
-        jLabel1.setText("Nome da Tarefa");
-
-        txtNomeTarefa.addActionListener(new java.awt.event.ActionListener() {
+        txtResponsavel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeTarefaActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("Descrição");
-
-        txtDescricao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDescricaoActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("Data");
-
-        txtData.setText("dd/mm/aaaa");
-        txtData.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDataActionPerformed(evt);
-            }
-        });
-
-        boxEmAndamento.setText("Em Andamento");
-
-        boxNaoConcluida.setText("Não concluída");
-        boxNaoConcluida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boxNaoConcluidaActionPerformed(evt);
+                txtResponsavelActionPerformed(evt);
             }
         });
 
         boxConcluida.setText("Concluída");
+
+        jLabel6.setText("Responsável");
 
         btnAnterior.setText("<=");
         btnAnterior.addActionListener(new java.awt.event.ActionListener() {
@@ -97,7 +77,21 @@ public class JanelaCadastroTarefaProfissional extends javax.swing.JPanel {
             }
         });
 
+        txtId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Nome da Tarefa");
+
         jLabel4.setText("Status");
+
+        txtNomeTarefa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomeTarefaActionPerformed(evt);
+            }
+        });
 
         txtStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,10 +99,18 @@ public class JanelaCadastroTarefaProfissional extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setText("Descrição");
+
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarActionPerformed(evt);
+            }
+        });
+
+        txtDescricao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDescricaoActionPerformed(evt);
             }
         });
 
@@ -119,10 +121,19 @@ public class JanelaCadastroTarefaProfissional extends javax.swing.JPanel {
             }
         });
 
+        jLabel3.setText("Data");
+
         btnExcluir.setText("Excluir");
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcluirActionPerformed(evt);
+            }
+        });
+
+        txtData.setText("dd/mm/aaaa");
+        txtData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDataActionPerformed(evt);
             }
         });
 
@@ -139,24 +150,19 @@ public class JanelaCadastroTarefaProfissional extends javax.swing.JPanel {
             }
         });
 
+        boxEmAndamento.setText("Em Andamento");
+
         jLabel5.setText("Projeto");
 
-        txtResponsavel.addActionListener(new java.awt.event.ActionListener() {
+        boxNaoConcluida.setText("Não concluída");
+        boxNaoConcluida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtResponsavelActionPerformed(evt);
+                boxNaoConcluidaActionPerformed(evt);
             }
         });
 
-        jLabel6.setText("Responsável");
-
-        txtId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -272,27 +278,44 @@ public class JanelaCadastroTarefaProfissional extends javax.swing.JPanel {
                         .addComponent(btnCadastrar)))
                 .addGap(17, 17, 17))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtResponsavelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtResponsavelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtResponsavelActionPerformed
+
+    private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
+        // TODO add your handling code here:
+        limparJanela();
+        TarefaProfissionalRepository tarefaProfissionalRepository = new TarefaProfissionalRepository();
+        TarefaProfissional tarefaProfissional = tarefaProfissionalRepository.selecionar(
+            janelaPrincipal.conexaoMySQL.connection,
+            "<",
+            Integer.parseInt(txtId.getText()));
+        if(tarefaProfissional != null){
+            //passar os dados para a tela:
+            txtNomeTarefa.setText(tarefaProfissional.getNomeTarefa());
+            txtDescricao.setText(tarefaProfissional.getDescricaoTarefa());
+            txtData.setText(tarefaProfissional.getData());
+            txtStatus.setText(String.valueOf(tarefaProfissional.getStatus()));
+            txtResponsavel.setText(tarefaProfissional.getResponsavel());
+            txtProjeto.setText(tarefaProfissional.getProjeto());
+            txtId.setText(String.valueOf(tarefaProfissional.getId()));
+        }else{
+            limparJanela();
+            txtId.setText("0");
+        }
+    }//GEN-LAST:event_btnAnteriorActionPerformed
+
+    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdActionPerformed
 
     private void txtNomeTarefaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeTarefaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeTarefaActionPerformed
-
-    private void txtDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescricaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDescricaoActionPerformed
-
-    private void txtDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDataActionPerformed
-
-    private void boxNaoConcluidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxNaoConcluidaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_boxNaoConcluidaActionPerformed
-
-    private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAnteriorActionPerformed
 
     private void txtStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStatusActionPerformed
         // TODO add your handling code here:
@@ -300,15 +323,75 @@ public class JanelaCadastroTarefaProfissional extends javax.swing.JPanel {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         // TODO add your handling code here:
+        int id = Integer.parseInt(txtId.getText());
+        TarefaProfissional tarefaProfissional = new TarefaProfissional();
+        tarefaProfissional.setNomeTarefa(txtNomeTarefa.getText());
+        tarefaProfissional.setDescricaoTarefa(txtDescricao.getText());
+        tarefaProfissional.setData(txtData.getText());
+        tarefaProfissional.setStatus(Integer.parseInt(txtStatus.getText()));
+        tarefaProfissional.setResponsavel(txtResponsavel.getText());
+        tarefaProfissional.setProjeto(txtProjeto.getText());
+        tarefaProfissional.setId(id);
+        //inserir tarefa profissional no banco de dados:
+        TarefaProfissionalRepository tarefaProfissionalRepository = new TarefaProfissionalRepository();
+        boolean retornoBanco = false;
+        if(Integer.parseInt(txtId.getText()) == 0){
+            //inserir
+            retornoBanco = tarefaProfissionalRepository.inserir(
+                    janelaPrincipal.conexaoMySQL.connection,
+                    tarefaProfissional);
+        }else{
+            //atualizar
+            retornoBanco = tarefaProfissionalRepository.atualizar(
+                    janelaPrincipal.conexaoMySQL.connection,
+                    tarefaProfissional);
+        }
+        if(retornoBanco){
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Cadastro atualizado com sucesso!",
+                    "Tela de cadastro tarefas academicas",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+            //limpar a janela
+            limparJanela();
+        }
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void txtDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescricaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDescricaoActionPerformed
 
     private void btnProximo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximo1ActionPerformed
         // TODO add your handling code here:
+        limparJanela();
+        TarefaProfissionalRepository tarefaProfissionalRepository = new TarefaProfissionalRepository();
+        TarefaProfissional tarefaProfissional = tarefaProfissionalRepository.selecionar(
+            janelaPrincipal.conexaoMySQL.connection,
+            ">",
+            Integer.parseInt(txtId.getText()));
+        if(tarefaProfissional != null){
+            //passar os dados para a tela:
+            txtNomeTarefa.setText(tarefaProfissional.getNomeTarefa());
+            txtDescricao.setText(tarefaProfissional.getDescricaoTarefa());
+            txtData.setText(tarefaProfissional.getData());
+            txtStatus.setText(String.valueOf(tarefaProfissional.getStatus()));
+            txtResponsavel.setText(tarefaProfissional.getResponsavel());
+            txtProjeto.setText(tarefaProfissional.getProjeto());
+            txtId.setText(String.valueOf(tarefaProfissional.getId()));
+        }else{
+            limparJanela();
+            txtId.setText("0");
+        }
     }//GEN-LAST:event_btnProximo1ActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void txtDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDataActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
@@ -318,14 +401,30 @@ public class JanelaCadastroTarefaProfissional extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtProjetoActionPerformed
 
-    private void txtResponsavelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtResponsavelActionPerformed
+    private void boxNaoConcluidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxNaoConcluidaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtResponsavelActionPerformed
+    }//GEN-LAST:event_boxNaoConcluidaActionPerformed
 
-    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdActionPerformed
-
+    private void limparJanela(){
+        txtNomeTarefa.setText("");
+        txtDescricao.setText("");
+        txtData.setText("");
+        txtStatus.setText("");
+        txtResponsavel.setText("");
+        txtProjeto.setText("");
+        txtNomeTarefa.requestFocus();
+    }
+    
+    private void fecharJanela(){
+        instancia = null;
+        dispose();
+    }
+    
+    public static JanelaCadastroTarefaProfissional getInstancia(JanelaPrincipal janelaPrincipal){
+        if(instancia == null)
+            instancia = new JanelaCadastroTarefaProfissional(janelaPrincipal);
+        return instancia;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox boxConcluida;
@@ -336,8 +435,6 @@ public class JanelaCadastroTarefaProfissional extends javax.swing.JPanel {
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnProximo1;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
