@@ -4,18 +4,13 @@
  */
 package sistemadegerenciamentodetarefas;
 
-import sistemadegerenciamentodetarefas.model.Tarefa;
-import sistemadegerenciamentodetarefas.model.TarefaAcademica;
-import sistemadegerenciamentodetarefas.model.TarefaProfissional;
 import sistemadegerenciamentodetarefas.view.JanelaPrincipal;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  *
- * @author Professor
+ * @author gustavo
  */
+
 public class SistemaDeGerenciamentoDeTarefas {
 
     /**
@@ -25,8 +20,5 @@ public class SistemaDeGerenciamentoDeTarefas {
         JanelaPrincipal janelaPrincipal = new JanelaPrincipal();
         janelaPrincipal.setVisible(true);
         janelaPrincipal.setTitle("Sistema de Gerenciamento de Tarefas");
-        
-        
     }
-    
 }

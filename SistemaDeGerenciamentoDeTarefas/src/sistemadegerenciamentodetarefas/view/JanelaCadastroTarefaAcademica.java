@@ -5,24 +5,21 @@
 package sistemadegerenciamentodetarefas.view;
 
 import sistemadegerenciamentodetarefas.model.TarefaAcademica;
-import sistemadegerenciamentodetarefas.model.Tarefa;
-import sistemadegerenciamentodetarefas.model.TarefaProfissional;
 import sistemadegerenciamentodetarefas.repository.TarefaAcademicaRepository;
-import sistemadegerenciamentodetarefas.repository.TarefaProfissionalRepository;
 import javax.swing.JOptionPane;
+import sistemadegerenciamentodetarefas.model.TarefaProfissional;
+import sistemadegerenciamentodetarefas.repository.TarefaProfissionalRepository;
 
 /**
  *
- * @author gusta
+ * @author gustavo
  */
 
 public class JanelaCadastroTarefaAcademica extends javax.swing.JInternalFrame {
 
     private static JanelaCadastroTarefaAcademica instancia;
     private JanelaPrincipal janelaPrincipal;
-    /**
-     * Creates new form JanelaCadastro
-     */
+
     public JanelaCadastroTarefaAcademica(JanelaPrincipal janelaPrincipal) {
         initComponents();
         this.janelaPrincipal = janelaPrincipal;
@@ -129,7 +126,16 @@ public class JanelaCadastroTarefaAcademica extends javax.swing.JInternalFrame {
             }
         });
 
+        txtData.setText("dd/mm/aaaa");
         txtData.setToolTipText("");
+        txtData.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtDataFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDataFocusLost(evt);
+            }
+        });
         txtData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDataActionPerformed(evt);
@@ -306,7 +312,15 @@ public class JanelaCadastroTarefaAcademica extends javax.swing.JInternalFrame {
         tarefaAcademica.setNomeTarefa(txtNomeTarefa.getText());
         tarefaAcademica.setDescricaoTarefa(txtDescricao.getText());
         tarefaAcademica.setData(txtData.getText());
-        tarefaAcademica.setStatus(txtStatus.getText());
+        if(boxNaoConcluida.isSelected()){
+                tarefaAcademica.setStatus("Não concluída");
+            }
+        if(boxEmAndamento.isSelected()){
+                tarefaAcademica.setStatus("Em andamento");
+            }
+        if(boxConcluida.isSelected()){
+                tarefaAcademica.setStatus("Concluída");
+            }
         tarefaAcademica.setMateria(txtMateria.getText());
         tarefaAcademica.setProfessor(txtProfessor.getText());
         tarefaAcademica.setId(id);
@@ -328,11 +342,10 @@ public class JanelaCadastroTarefaAcademica extends javax.swing.JInternalFrame {
         if(retornoBanco){
             JOptionPane.showMessageDialog(
                 this,
-                "Cadastro atualizado com sucesso!",
+                "Tarefa atualizada com sucesso!",
                 "Tela de cadastro tarefas academicas",
                 JOptionPane.INFORMATION_MESSAGE
             );
-            //limpar a janela
             limparJanela();
         }
 
@@ -400,6 +413,37 @@ public class JanelaCadastroTarefaAcademica extends javax.swing.JInternalFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         // TODO add your handling code here:
+        if(Integer.parseInt(txtId.getText()) > 0){
+            int resposta = JOptionPane.showConfirmDialog(
+                    this,
+                    "Deseja realmente excluir esse registro?",
+                    "Excluir?",
+                    JOptionPane.YES_NO_OPTION
+            );
+            if(resposta == JOptionPane.YES_OPTION){
+                //excluir registro:
+                int id = Integer.parseInt(txtId.getText());
+                TarefaAcademica tarefa = new TarefaAcademica();
+                tarefa.setId(id);
+                TarefaAcademicaRepository tarefaAcademicaRepository = new TarefaAcademicaRepository();
+                boolean retornoBanco = tarefaAcademicaRepository.deletar(
+                        janelaPrincipal.conexaoMySQL.connection,
+                        tarefa
+                );
+                if(retornoBanco){
+                    limparJanela();
+                    txtId.setText("0");
+                    //atualizaIdLista();
+                    JOptionPane.showMessageDialog(
+                            this,
+                            "Registro excluído com sucesso!",
+                            "Tela de cadastro de tarefas academicas",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+                }                
+                
+            }            
+        }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void txtMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMateriaActionPerformed
@@ -413,6 +457,20 @@ public class JanelaCadastroTarefaAcademica extends javax.swing.JInternalFrame {
     private void txtProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProfessorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtProfessorActionPerformed
+
+    private void txtDataFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDataFocusGained
+        // TODO add your handling code here:
+        if (txtData.getText().equals("dd/mm/aaaa")) {
+            txtData.setText("");
+       }
+    }//GEN-LAST:event_txtDataFocusGained
+
+    private void txtDataFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDataFocusLost
+        // TODO add your handling code here:
+        if (txtData.getText().isEmpty()) {
+            txtData.setText("dd/mm/aaaa");
+        }
+    }//GEN-LAST:event_txtDataFocusLost
 
     private void limparJanela(){
     txtNomeTarefa.setText("");

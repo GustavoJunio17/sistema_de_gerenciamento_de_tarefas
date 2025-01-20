@@ -4,16 +4,17 @@
  */
 package sistemadegerenciamentodetarefas.repository;
 
-import java.sql.Connection;
 import sistemadegerenciamentodetarefas.model.TarefaProfissional;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
- * @author gusta
+ * @author gustavo
  */
 
 public class TarefaProfissionalRepository implements Crud<TarefaProfissional> {
@@ -138,4 +139,33 @@ public class TarefaProfissionalRepository implements Crud<TarefaProfissional> {
         }
     }
     
+    public List<TarefaProfissional> selecionarTodos(Connection connection, int id){
+        try{
+            List<TarefaProfissional> tarefas = new ArrayList<>();
+            PreparedStatement stmt = null;
+            
+            String comando = "SELECT * FROM tarefa_profissional";
+            
+            stmt = connection.prepareStatement(comando);
+            ResultSet res = stmt.executeQuery();
+            
+            while(res.next()){
+                TarefaProfissional tarefa = new TarefaProfissional();
+                tarefa.setId(res.getInt("id"));
+                tarefa.setNomeTarefa(res.getString("nome_tarefa"));
+                tarefa.setDescricaoTarefa(res.getString("descricao"));
+                tarefa.setData(res.getString("data"));
+                tarefa.setStatus(res.getString("status"));
+                tarefa.setResponsavel(res.getString("responsavel"));
+                tarefa.setProjeto(res.getString("projeto"));
+                
+                tarefas.add(tarefa);   
+            }
+            return tarefas;
+
+        }catch(Exception ex){
+            ex.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
 }

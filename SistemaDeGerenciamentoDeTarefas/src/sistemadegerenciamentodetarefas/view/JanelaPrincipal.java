@@ -10,24 +10,26 @@ import sistemadegerenciamentodetarefas.repository.Conexao;
 import sistemadegerenciamentodetarefas.repository.ConexaoMySQL;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
-
 /**
  *
- * @author gusta
+ * @author gustavo
  */
+
 public class JanelaPrincipal extends javax.swing.JFrame {
 
    JanelaCadastroTarefaAcademica janelaCadastroTarefaAcademica;
    JanelaCadastroTarefaProfissional janelaCadastroTarefaProfissional;
+   JanelaOpcaoRelatorios janelaOpcaoRelatorios;
    public List<TarefaAcademica> lstTarefaAcademica;
    public List<TarefaProfissional> lstTarefaProfissional;
    public int ultimoId;
    private Conexao conexao;
    public ConexaoMySQL conexaoMySQL;
-    
+
     public JanelaPrincipal() {
         initComponents();
         lstTarefaAcademica = new ArrayList<>();
@@ -42,7 +44,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         );
         conexaoMySQL = new ConexaoMySQL(conexao);
         conexaoMySQL.conectar();
-        
     }
 
     /**
@@ -98,6 +99,11 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(tarefasMenu);
 
         relatoriosMenu.setText("Relatórios");
+        relatoriosMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                relatoriosMenuMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(relatoriosMenu);
 
         ajudaMenu.setText("Ajuda");
@@ -113,15 +119,18 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         try{
             janelaCadastroTarefaAcademica = JanelaCadastroTarefaAcademica.getInstancia(this);
             if(!desktopPane.isAncestorOf(janelaCadastroTarefaAcademica)){
-                desktopPane.add("JanelaCadastro", janelaCadastroTarefaAcademica);
+                desktopPane.add("JanelaCadastroTarefaAcademica", janelaCadastroTarefaAcademica);
                 janelaCadastroTarefaAcademica.setDefaultCloseOperation(JInternalFrame.DO_NOTHING_ON_CLOSE);
+                int x = (getDesktopPane().getWidth() - janelaCadastroTarefaAcademica.getWidth()) / 2;
+                int y = (getDesktopPane().getHeight() - janelaCadastroTarefaAcademica.getHeight()) / 2;
+                janelaCadastroTarefaAcademica.setLocation(x, y);
             }
             
             janelaCadastroTarefaAcademica.setSelected(true);
         }catch(Exception ex){
             JOptionPane.showConfirmDialog(null, 
-                    "Erro ao abrir a tela de cadastro de clientes: ",
-                    "Cadastro de clientes",
+                    "Erro ao abrir a tela de cadastro de tarefa acadêmica: ",
+                    "Cadastro tarefa acadêmica",
                     JOptionPane.ERROR_MESSAGE);
         }
         
@@ -132,15 +141,18 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         try{
             janelaCadastroTarefaProfissional = JanelaCadastroTarefaProfissional.getInstancia(this);
             if(!desktopPane.isAncestorOf(janelaCadastroTarefaProfissional)){
-                desktopPane.add("JanelaCadastro", janelaCadastroTarefaProfissional);
+                desktopPane.add("JanelaCadastroTarefaProfissional", janelaCadastroTarefaProfissional);
                 janelaCadastroTarefaProfissional.setDefaultCloseOperation(JInternalFrame.DO_NOTHING_ON_CLOSE);
+                int x = (getDesktopPane().getWidth() - janelaCadastroTarefaProfissional.getWidth()) / 2;
+                int y = (getDesktopPane().getHeight() - janelaCadastroTarefaProfissional.getHeight()) / 2;
+                janelaCadastroTarefaProfissional.setLocation(x, y);
             }
             
             janelaCadastroTarefaProfissional.setSelected(true);
         }catch(Exception ex){
             JOptionPane.showConfirmDialog(null, 
-                    "Erro ao abrir a tela de cadastro de clientes: ",
-                    "Cadastro de clientes",
+                    "Erro ao abrir a tela de cadastro de tarefa profissional: ",
+                    "Cadastro de tarefa profissional",
                     JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_cadastroTarefasProfissionaisActionPerformed
@@ -149,6 +161,30 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_sairActionPerformed
+
+    private void relatoriosMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_relatoriosMenuMouseClicked
+                                      
+        try {
+            janelaOpcaoRelatorios = JanelaOpcaoRelatorios.getInstancia(this);
+
+            if (!janelaOpcaoRelatorios.isVisible()) {
+                desktopPane.add(janelaOpcaoRelatorios);
+                janelaOpcaoRelatorios.setDefaultCloseOperation(JInternalFrame.DO_NOTHING_ON_CLOSE);
+                janelaOpcaoRelatorios.setVisible(true);
+                int x = (getDesktopPane().getWidth() - janelaOpcaoRelatorios.getWidth()) / 2;
+                int y = (getDesktopPane().getHeight() - janelaOpcaoRelatorios.getHeight()) / 2;
+                janelaOpcaoRelatorios.setLocation(x, y); 
+            }
+
+            janelaOpcaoRelatorios.setSelected(true);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                    "Erro ao abrir a tela de opções de relatórios: " + ex.getMessage(),
+                    "Opção relatório",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_relatoriosMenuMouseClicked
 
     /**
      * @param args the command line arguments
@@ -185,6 +221,9 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         });
     }
 
+    public JDesktopPane getDesktopPane() {
+        return desktopPane;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu ajudaMenu;
     private javax.swing.JMenuItem cadastroTarefasAcademicas;
@@ -195,4 +234,5 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem sair;
     private javax.swing.JMenu tarefasMenu;
     // End of variables declaration//GEN-END:variables
+
 }

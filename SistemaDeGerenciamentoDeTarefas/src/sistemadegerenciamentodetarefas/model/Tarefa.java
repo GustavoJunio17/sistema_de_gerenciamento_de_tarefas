@@ -6,8 +6,9 @@ package sistemadegerenciamentodetarefas.model;
 
 /**
  *
- * @author gusta
+ * @author gustavo
  */
+
 public class Tarefa {
     private int id;
     private String nomeTarefa;
@@ -76,6 +77,4 @@ public class Tarefa {
                 "Status =" + this.status
         ;
     }
-    
-    
 }

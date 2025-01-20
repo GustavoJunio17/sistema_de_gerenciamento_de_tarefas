@@ -4,19 +4,17 @@
  */
 package sistemadegerenciamentodetarefas.repository;
 
-import java.sql.Connection;
 import sistemadegerenciamentodetarefas.model.TarefaAcademica;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
         
 /**
  *
- * @author gusta
- *//**
- *
- * @author gusta
+ * @author gustavo
  */
 
 public class TarefaAcademicaRepository implements Crud<TarefaAcademica>{
@@ -33,7 +31,7 @@ public class TarefaAcademicaRepository implements Crud<TarefaAcademica>{
     public boolean inserir(Connection connection, TarefaAcademica tarefa) {
         PreparedStatement stmt = null;
         try{
-            String comando = "INSERT INTO tarefa_profissional(nome_tarefa, descricao, data, status, materia, professor)" +
+            String comando = "INSERT INTO tarefa_academica(nome_tarefa, descricao, data, status, materia, professor)" +
                              "VALUES(?, ?, ?, ?, ?, ?)";
             stmt = connection.prepareStatement(comando);
             stmt.setString(1, tarefa.getNomeTarefa());
@@ -129,8 +127,8 @@ public class TarefaAcademicaRepository implements Crud<TarefaAcademica>{
                     tarefa.setDescricaoTarefa(res.getString("descricao"));
                     tarefa.setData(res.getString("data"));
                     tarefa.setStatus(res.getString("status"));
-                    tarefa.setMateria(res.getString("responsavel"));
-                    tarefa.setProfessor(res.getString("projeto"));
+                    tarefa.setMateria(res.getString("materia"));
+                    tarefa.setProfessor(res.getString("professor"));
                     break;
                     
                 }
@@ -138,6 +136,35 @@ public class TarefaAcademicaRepository implements Crud<TarefaAcademica>{
             return tarefa;
         }catch(Exception ex){
             return null;
+        }
+    }
+    public List<TarefaAcademica> selecionarTodos(Connection connection, int id){
+        try{
+            List<TarefaAcademica> tarefas = new ArrayList<>();
+            PreparedStatement stmt = null;
+            
+            String comando = "SELECT * FROM tarefa_academica";
+            
+            stmt = connection.prepareStatement(comando);
+            ResultSet res = stmt.executeQuery();
+            
+            while(res.next()){
+                TarefaAcademica tarefa = new TarefaAcademica();
+                tarefa.setId(res.getInt("id"));
+                tarefa.setNomeTarefa(res.getString("nome_tarefa"));
+                tarefa.setDescricaoTarefa(res.getString("descricao"));
+                tarefa.setData(res.getString("data"));
+                tarefa.setStatus(res.getString("status"));
+                tarefa.setMateria(res.getString("materia"));
+                tarefa.setProfessor(res.getString("professor"));
+                
+                tarefas.add(tarefa);   
+            }
+            return tarefas;
+
+        }catch(Exception ex){
+            ex.printStackTrace();
+            return new ArrayList<>();
         }
     }
 }

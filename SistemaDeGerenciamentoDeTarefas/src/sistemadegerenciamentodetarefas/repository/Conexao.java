@@ -6,8 +6,9 @@ package sistemadegerenciamentodetarefas.repository;
 
 /**
  *
- * @author gusta
+ * @author gustavo
  */
+
 public class Conexao {
     private String endereco;
     private String user;
@@ -62,6 +63,4 @@ public class Conexao {
     public void setNomeBanco(String nomeBranco) {
         this.nomeBanco = nomeBranco;
     }
-    
-    
 }

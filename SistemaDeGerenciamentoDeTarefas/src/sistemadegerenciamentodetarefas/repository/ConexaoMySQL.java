@@ -13,8 +13,9 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author gusta
+ * @author gustavo
  */
+
 public class ConexaoMySQL {
     private Conexao conexao = null;
     public static Connection connection = null;
@@ -71,5 +72,4 @@ public class ConexaoMySQL {
         }
         return false;
     }
-    
 }

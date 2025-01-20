@@ -4,10 +4,12 @@
  */
 package sistemadegerenciamentodetarefas.repository;
 import java.sql.Connection;
+
 /**
  *
- * @author Professor
+ * @author gustavo
  */
+
 public interface Crud<T> {
     public boolean inserir(Connection connection, T entity);
     public boolean atualizar(Connection connection, T entity);

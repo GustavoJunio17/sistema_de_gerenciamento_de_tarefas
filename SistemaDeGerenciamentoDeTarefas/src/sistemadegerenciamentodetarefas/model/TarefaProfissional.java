@@ -6,8 +6,9 @@ package sistemadegerenciamentodetarefas.model;
 
 /**
  *
- * @author gusta
+ * @author gustavo
  */
+
 public class TarefaProfissional extends Tarefa {
     private String responsavel;
     private String projeto;
@@ -50,6 +51,4 @@ public class TarefaProfissional extends Tarefa {
                 "Projeto =" + this.projeto
         ;
     }
-    
-    
 }

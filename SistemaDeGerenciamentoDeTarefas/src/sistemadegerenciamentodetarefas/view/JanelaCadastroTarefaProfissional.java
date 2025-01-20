@@ -17,9 +17,7 @@ public class JanelaCadastroTarefaProfissional extends javax.swing.JInternalFrame
 
     private static JanelaCadastroTarefaProfissional instancia;
     private JanelaPrincipal janelaPrincipal;
-    /**
-     * Creates new form JanelaCadastroTarefaProfissional
-     */
+   
     public JanelaCadastroTarefaProfissional(JanelaPrincipal janelaPrincipal) {
         initComponents();
         this.janelaPrincipal = janelaPrincipal;
@@ -316,7 +314,7 @@ public class JanelaCadastroTarefaProfissional extends javax.swing.JInternalFrame
             txtId.setText(String.valueOf(tarefaProfissional.getId()));
         }else{
             limparJanela();
-            txtId.setText("-");
+            txtId.setText("0");
         }
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
@@ -368,11 +366,10 @@ public class JanelaCadastroTarefaProfissional extends javax.swing.JInternalFrame
         if(retornoBanco){
             JOptionPane.showMessageDialog(
                     this,
-                    "Cadastro atualizado com sucesso!",
-                    "Tela de cadastro tarefas academicas",
+                    "Tarefa atualizado com sucesso!",
+                    "Tela de cadastro tarefas profissionais",
                     JOptionPane.INFORMATION_MESSAGE
             );
-            //limpar a janela
             limparJanela();
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
@@ -400,7 +397,7 @@ public class JanelaCadastroTarefaProfissional extends javax.swing.JInternalFrame
             txtId.setText(String.valueOf(tarefaProfissional.getId()));
         }else{
             limparJanela();
-            txtId.setText("-");
+            txtId.setText("0");
         }
     }//GEN-LAST:event_btnProximo1ActionPerformed
 
@@ -425,8 +422,6 @@ public class JanelaCadastroTarefaProfissional extends javax.swing.JInternalFrame
             if(resposta == JOptionPane.YES_OPTION){
                 //excluir registro:
                 int id = Integer.parseInt(txtId.getText());
-                //janelaPrincipal.lstPessoa.remove(id-1);
-                //janelaPrincipal.ultimoId -=1;
                 TarefaProfissional tarefa = new TarefaProfissional();
                 tarefa.setId(id);
                 TarefaProfissionalRepository tarefaProfissionalRepository = new TarefaProfissionalRepository();
@@ -441,7 +436,7 @@ public class JanelaCadastroTarefaProfissional extends javax.swing.JInternalFrame
                     JOptionPane.showMessageDialog(
                             this,
                             "Registro excluído com sucesso!",
-                            "Tela de cadastro",
+                            "Tela de cadastro de tarefas profissionais",
                             JOptionPane.INFORMATION_MESSAGE
                     );
                 }                
@@ -469,7 +464,7 @@ public class JanelaCadastroTarefaProfissional extends javax.swing.JInternalFrame
     private void txtDataFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDataFocusLost
         // TODO add your handling code here:
         if (txtData.getText().isEmpty()) {
-            txtData.setText("dd/mm/aaaa"); // Reinsere o placeholder
+            txtData.setText("dd/mm/aaaa");
         }
 
     }//GEN-LAST:event_txtDataFocusLost
