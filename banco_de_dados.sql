@@ -21,9 +21,3 @@ CREATE TABLE `cadastro_tarefas`.`tarefa_profissional` (
   `responsavel` VARCHAR(100)     NULL                    COMMENT '',
   `projeto`     VARCHAR(100)     NULL                    COMMENT '',
   PRIMARY KEY (`id`)                                     COMMENT '');
-
-select * from tarefa_academica;
-SELECT * FROM tarefa_academica WHERE id > 1;
-
-select * from tarefa_profissional;
-DROP DATABASE cadastro_tarefas;

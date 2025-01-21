@@ -38,7 +38,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         conexao = new Conexao (
                 "localhost",
                 "root",
-                "02172527Gus@",
+                "admin",
                 3306,
                 "cadastro_tarefas"
         );
@@ -70,8 +70,10 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(900, 700));
         getContentPane().add(desktopPane, java.awt.BorderLayout.CENTER);
 
+        tarefasMenu.setMnemonic('m');
         tarefasMenu.setText("Menu");
 
+        cadastroTarefasAcademicas.setMnemonic('a');
         cadastroTarefasAcademicas.setText("Cadastro Tarefas Academicas");
         cadastroTarefasAcademicas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,6 +82,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         });
         tarefasMenu.add(cadastroTarefasAcademicas);
 
+        cadastroTarefasProfissionais.setMnemonic('p');
         cadastroTarefasProfissionais.setText("Cadastro Tarefas Profissionais");
         cadastroTarefasProfissionais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,6 +91,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         });
         tarefasMenu.add(cadastroTarefasProfissionais);
 
+        sair.setMnemonic('s');
         sair.setText("Sair");
         sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,6 +102,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(tarefasMenu);
 
+        relatoriosMenu.setMnemonic('r');
         relatoriosMenu.setText("Relatórios");
         relatoriosMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -106,7 +111,13 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         });
         jMenuBar1.add(relatoriosMenu);
 
+        ajudaMenu.setMnemonic('a');
         ajudaMenu.setText("Ajuda");
+        ajudaMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ajudaMenuMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(ajudaMenu);
 
         setJMenuBar(jMenuBar1);
@@ -185,6 +196,15 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_relatoriosMenuMouseClicked
+
+    private void ajudaMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ajudaMenuMouseClicked
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null,
+                    "Comandos: \na - Cadastro de Tarefas Acadêmicas\np - Cadastro de Tarefas Profissionais\ns - Sair" ,
+                    "Ajuda",
+                    JOptionPane.DEFAULT_OPTION);
+        
+    }//GEN-LAST:event_ajudaMenuMouseClicked
 
     /**
      * @param args the command line arguments

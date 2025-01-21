@@ -42,6 +42,8 @@ public class JanelaOpcaoRelatorios extends javax.swing.JInternalFrame {
         btnProfissional = new javax.swing.JButton();
         btnFechar = new javax.swing.JButton();
 
+        setTitle("Relatório");
+
         jLabel1.setText("Escolha uma das opções de tarefas para ser gerado seu relatório");
 
         btnAcademica.setText("Academica");

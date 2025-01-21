@@ -6,11 +6,13 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="tarefasMenu">
           <Properties>
+            <Property name="mnemonic" type="int" value="109"/>
             <Property name="text" type="java.lang.String" value="Menu"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="cadastroTarefasAcademicas">
               <Properties>
+                <Property name="mnemonic" type="int" value="97"/>
                 <Property name="text" type="java.lang.String" value="Cadastro Tarefas Academicas"/>
               </Properties>
               <Events>
@@ -19,6 +21,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="cadastroTarefasProfissionais">
               <Properties>
+                <Property name="mnemonic" type="int" value="112"/>
                 <Property name="text" type="java.lang.String" value="Cadastro Tarefas Profissionais"/>
               </Properties>
               <Events>
@@ -27,6 +30,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="sair">
               <Properties>
+                <Property name="mnemonic" type="int" value="115"/>
                 <Property name="text" type="java.lang.String" value="Sair"/>
               </Properties>
               <Events>
@@ -37,6 +41,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="relatoriosMenu">
           <Properties>
+            <Property name="mnemonic" type="int" value="114"/>
             <Property name="text" type="java.lang.String" value="Relat&#xf3;rios"/>
           </Properties>
           <Events>
@@ -45,8 +50,12 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="ajudaMenu">
           <Properties>
+            <Property name="mnemonic" type="int" value="97"/>
             <Property name="text" type="java.lang.String" value="Ajuda"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ajudaMenuMouseClicked"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>
