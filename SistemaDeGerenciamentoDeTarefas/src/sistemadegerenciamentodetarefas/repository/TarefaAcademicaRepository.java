@@ -167,4 +167,28 @@ public class TarefaAcademicaRepository implements Crud<TarefaAcademica>{
             return new ArrayList<>();
         }
     }
+    public List<TarefaAcademica> buscarPorNome(Connection connection, String nome) {
+        List<TarefaAcademica> tarefas = new ArrayList<>();
+        String sql = "SELECT * FROM tarefa_academica WHERE nome_tarefa LIKE ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, "%" + nome + "%");
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    TarefaAcademica tarefa = new TarefaAcademica();
+                    tarefa.setId(rs.getInt("id"));
+                    tarefa.setNomeTarefa(rs.getString("nome_tarefa"));
+                    tarefa.setDescricaoTarefa(rs.getString("descricao"));
+                    tarefa.setData(rs.getString("data"));
+                    tarefa.setStatus(rs.getString("status"));
+                    tarefa.setMateria(rs.getString("materia"));
+                    tarefa.setProfessor(rs.getString("professor"));
+                    tarefas.add(tarefa);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tarefas;
+    }
 }

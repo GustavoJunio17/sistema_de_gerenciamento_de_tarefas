@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.util.List;
 import java.util.ArrayList;
+import sistemadegerenciamentodetarefas.model.TarefaAcademica;
 
 /**
  *
@@ -167,5 +168,29 @@ public class TarefaProfissionalRepository implements Crud<TarefaProfissional> {
             ex.printStackTrace();
             return new ArrayList<>();
         }
+    }
+    public List<TarefaProfissional> buscarPorNome(Connection connection, String nome) {
+        List<TarefaProfissional> tarefas = new ArrayList<>();
+        String sql = "SELECT * FROM tarefa_profissional WHERE nome_tarefa LIKE ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, "%" + nome + "%");
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    TarefaProfissional tarefa = new TarefaProfissional();
+                    tarefa.setId(rs.getInt("id"));
+                    tarefa.setNomeTarefa(rs.getString("nome_tarefa"));
+                    tarefa.setDescricaoTarefa(rs.getString("descricao"));
+                    tarefa.setData(rs.getString("data"));
+                    tarefa.setStatus(rs.getString("status"));
+                    tarefa.setResponsavel(rs.getString("responsavel"));
+                    tarefa.setProjeto(rs.getString("projeto"));
+                    tarefas.add(tarefa);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tarefas;
     }
 }

@@ -103,7 +103,7 @@ public class JanelaOpcaoRelatorios extends javax.swing.JInternalFrame {
     private void btnAcademicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcademicaActionPerformed
         // TODO add your handling code here:
         try {
-            janelaTarefasAcademicas = new JanelaTarefasAcademicas(this);
+            janelaTarefasAcademicas = new JanelaTarefasAcademicas(this, janelaPrincipal);
             TarefaAcademicaRepository tarefaRepository = new TarefaAcademicaRepository();
             List<TarefaAcademica> listaTarefas = tarefaRepository.selecionarTodos(janelaPrincipal.conexaoMySQL.connection, 100);
             janelaTarefasAcademicas.carregarTarefas(listaTarefas);
@@ -135,7 +135,7 @@ public class JanelaOpcaoRelatorios extends javax.swing.JInternalFrame {
     private void btnProfissionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfissionalActionPerformed
         // TODO add your handling code here:
         try {
-            janelaTarefasProfissionais = new JanelaTarefasProfissionais(this);
+            janelaTarefasProfissionais = new JanelaTarefasProfissionais(this, janelaPrincipal);
             TarefaProfissionalRepository tarefaRepository = new TarefaProfissionalRepository();
             List<TarefaProfissional> listaTarefas = tarefaRepository.selecionarTodos(janelaPrincipal.conexaoMySQL.connection, 100);
             janelaTarefasProfissionais.carregarTarefas(listaTarefas);

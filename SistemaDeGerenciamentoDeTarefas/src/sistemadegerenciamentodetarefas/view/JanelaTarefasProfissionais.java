@@ -6,7 +6,10 @@ package sistemadegerenciamentodetarefas.view;
 
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import sistemadegerenciamentodetarefas.model.TarefaAcademica;
 import sistemadegerenciamentodetarefas.model.TarefaProfissional;
+import sistemadegerenciamentodetarefas.repository.TarefaAcademicaRepository;
+import sistemadegerenciamentodetarefas.repository.TarefaProfissionalRepository;
 
 /**
  *
@@ -15,12 +18,14 @@ import sistemadegerenciamentodetarefas.model.TarefaProfissional;
 
 public class JanelaTarefasProfissionais extends javax.swing.JInternalFrame {
 
-    private static JanelaTarefasAcademicas instancia;
+    private static JanelaTarefasProfissionais instancia;
     private JanelaOpcaoRelatorios janelaOpcaoRelatorios;
+    private JanelaPrincipal janelaPrincipal;
     
-    public JanelaTarefasProfissionais(JanelaOpcaoRelatorios janelaOpcaoRelatorios) {
+    public JanelaTarefasProfissionais(JanelaOpcaoRelatorios janelaOpcaoRelatorios, JanelaPrincipal janelaPrincipal) {
         initComponents();
         this.janelaOpcaoRelatorios = janelaOpcaoRelatorios;
+        this.janelaPrincipal = janelaPrincipal;
     }
     
     public JanelaTarefasProfissionais() {
@@ -66,6 +71,9 @@ public class JanelaTarefasProfissionais extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableTarefas = new javax.swing.JTable();
         btnFechar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        txtProcurar = new javax.swing.JTextField();
+        btnBuscar1 = new javax.swing.JButton();
 
         setTitle("Relatório Tarefas Profissionais");
         setMinimumSize(new java.awt.Dimension(900, 600));
@@ -96,25 +104,46 @@ public class JanelaTarefasProfissionais extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setText("Nome");
+
+        btnBuscar1.setText("Buscar");
+        btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnFechar)
                 .addGap(391, 391, 391))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtProcurar, javax.swing.GroupLayout.PREFERRED_SIZE, 711, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnBuscar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addContainerGap(27, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtProcurar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(btnBuscar1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
                 .addComponent(btnFechar)
                 .addGap(19, 19, 19))
         );
@@ -126,21 +155,51 @@ public class JanelaTarefasProfissionais extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         fecharJanela();
     }//GEN-LAST:event_btnFecharActionPerformed
+
+    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel modeloTabela = (DefaultTableModel) tableTarefas.getModel();
+        modeloTabela.setRowCount(0);
+        String nome = txtProcurar.getText().trim();
+        TarefaProfissionalRepository tarefaProfissionalRepository = new TarefaProfissionalRepository();
+        List<TarefaProfissional> tarefaProfissional = tarefaProfissionalRepository.buscarPorNome(janelaPrincipal.conexaoMySQL.connection, nome);
+        
+        if (tarefaProfissional.isEmpty()) {
+            System.out.println("Nenhuma tarefa para carregar.");
+        }
+
+        for (TarefaProfissional tarefa : tarefaProfissional) {
+            modeloTabela.addRow(new Object[] {
+                    tarefa.getId(),
+                    tarefa.getNomeTarefa(),
+                    tarefa.getDescricaoTarefa(),
+                    tarefa.getData(),
+                    tarefa.getStatus(),
+                    tarefa.getResponsavel(),
+                    tarefa.getProjeto()
+            });
+            System.out.println("Tarefa carregada: " + tarefa.getNomeTarefa());
+        } 
+    }//GEN-LAST:event_btnBuscar1ActionPerformed
    
     private void fecharJanela(){
         instancia = null;
         dispose();
     }
     
-    public static JanelaTarefasAcademicas getInstancia(JanelaOpcaoRelatorios janelaOpcaoRelatorios){
+    public static JanelaTarefasProfissionais getInstancia(JanelaOpcaoRelatorios janelaOpcaoRelatorios, JanelaPrincipal janelaPrincipal){
         if(instancia == null)
-        instancia = new JanelaTarefasAcademicas(janelaOpcaoRelatorios);
+        instancia = new JanelaTarefasProfissionais(janelaOpcaoRelatorios, janelaPrincipal);
         return instancia;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnBuscar1;
     private javax.swing.JButton btnFechar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableTarefas;
+    private javax.swing.JTextField txtProcurar;
     // End of variables declaration//GEN-END:variables
 }
