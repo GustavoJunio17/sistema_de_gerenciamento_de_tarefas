@@ -56,7 +56,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         desktopPane = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         tarefasMenu = new javax.swing.JMenu();
         cadastroTarefasAcademicas = new javax.swing.JMenuItem();
@@ -70,17 +69,16 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(900, 700));
 
-        desktopPane.setLayout(new java.awt.FlowLayout());
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistemadegerenciamentodetarefas/icone/icone.png"))); // NOI18N
-        jLabel1.setText("Gerenciador De Tarefas");
-        jLabel1.setToolTipText("");
-        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel1.setVerifyInputWhenFocusTarget(false);
-        jLabel1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        desktopPane.add(jLabel1);
+        javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
+        desktopPane.setLayout(desktopPaneLayout);
+        desktopPaneLayout.setHorizontalGroup(
+            desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 713, Short.MAX_VALUE)
+        );
+        desktopPaneLayout.setVerticalGroup(
+            desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 611, Short.MAX_VALUE)
+        );
 
         getContentPane().add(desktopPane, java.awt.BorderLayout.CENTER);
 
@@ -263,7 +261,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem cadastroTarefasAcademicas;
     private javax.swing.JMenuItem cadastroTarefasProfissionais;
     private javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu relatoriosMenu;
     private javax.swing.JMenuItem sair;

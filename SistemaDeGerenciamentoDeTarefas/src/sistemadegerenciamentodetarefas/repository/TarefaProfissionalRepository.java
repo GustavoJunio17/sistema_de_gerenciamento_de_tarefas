@@ -11,7 +11,6 @@ import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.util.List;
 import java.util.ArrayList;
-import sistemadegerenciamentodetarefas.model.TarefaAcademica;
 
 /**
  *

@@ -6,6 +6,7 @@ package sistemadegerenciamentodetarefas.view;
 
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
+import javax.swing.JOptionPane;
 import sistemadegerenciamentodetarefas.model.TarefaAcademica;
 import sistemadegerenciamentodetarefas.repository.TarefaAcademicaRepository;
 
@@ -42,6 +43,10 @@ public class JanelaTarefasAcademicas extends javax.swing.JInternalFrame {
         
         if (listaTarefas.isEmpty()) {
             System.out.println("Nenhuma tarefa para carregar.");
+            JOptionPane.showMessageDialog(null,
+                    "Nenhuma tarefa encontrada",
+                    "Opção relatório",
+                    JOptionPane.ERROR_MESSAGE);
         }
 
         for (TarefaAcademica tarefa : listaTarefas) {
@@ -165,6 +170,10 @@ public class JanelaTarefasAcademicas extends javax.swing.JInternalFrame {
         
         if (tarefaAcademica.isEmpty()) {
             System.out.println("Nenhuma tarefa para carregar.");
+            JOptionPane.showMessageDialog(null,
+                    "Nenhuma tarefa encontrada",
+                    "Opção relatório",
+                    JOptionPane.ERROR_MESSAGE);
         }
 
         for (TarefaAcademica tarefa : tarefaAcademica) {

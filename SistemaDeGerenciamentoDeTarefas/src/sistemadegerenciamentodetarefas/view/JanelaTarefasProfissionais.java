@@ -5,10 +5,9 @@
 package sistemadegerenciamentodetarefas.view;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import sistemadegerenciamentodetarefas.model.TarefaAcademica;
 import sistemadegerenciamentodetarefas.model.TarefaProfissional;
-import sistemadegerenciamentodetarefas.repository.TarefaAcademicaRepository;
 import sistemadegerenciamentodetarefas.repository.TarefaProfissionalRepository;
 
 /**
@@ -43,6 +42,10 @@ public class JanelaTarefasProfissionais extends javax.swing.JInternalFrame {
         
         if (listaTarefas.isEmpty()) {
             System.out.println("Nenhuma tarefa para carregar.");
+            JOptionPane.showMessageDialog(null,
+                    "Nenhuma tarefa encontrada",
+                    "Opção relatório",
+                    JOptionPane.ERROR_MESSAGE);
         }
 
         for (TarefaProfissional tarefa : listaTarefas) {
@@ -166,6 +169,13 @@ public class JanelaTarefasProfissionais extends javax.swing.JInternalFrame {
         
         if (tarefaProfissional.isEmpty()) {
             System.out.println("Nenhuma tarefa para carregar.");
+            if (tarefaProfissional.isEmpty()) {
+            System.out.println("Nenhuma tarefa para carregar.");
+            JOptionPane.showMessageDialog(null,
+                    "Nenhuma tarefa encontrada",
+                    "Opção relatório",
+                    JOptionPane.ERROR_MESSAGE);
+        }
         }
 
         for (TarefaProfissional tarefa : tarefaProfissional) {

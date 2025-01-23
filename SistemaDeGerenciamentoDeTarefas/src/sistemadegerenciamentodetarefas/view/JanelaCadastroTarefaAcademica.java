@@ -7,8 +7,7 @@ package sistemadegerenciamentodetarefas.view;
 import sistemadegerenciamentodetarefas.model.TarefaAcademica;
 import sistemadegerenciamentodetarefas.repository.TarefaAcademicaRepository;
 import javax.swing.JOptionPane;
-import sistemadegerenciamentodetarefas.model.TarefaProfissional;
-import sistemadegerenciamentodetarefas.repository.TarefaProfissionalRepository;
+
 
 /**
  *
