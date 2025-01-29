@@ -6,14 +6,19 @@ package sistemadegerenciamentodetarefas.model;
 
 /**
  *
- * @author gusta
+ * @author gustavo
  */
+
 public class TarefaAcademica extends Tarefa {
     private String materia;
     private String professor;
 
+    public TarefaAcademica(){
+        
+    }
+    
     public TarefaAcademica(String materia, String professor, int id, String nomeTarefa, 
-                           String descricaoTarefa, String data, int status) {
+                           String descricaoTarefa, String data, String status) {
         super(id, nomeTarefa, descricaoTarefa, data, status);
         this.materia = materia;
         this.professor = professor;
@@ -47,6 +52,4 @@ public class TarefaAcademica extends Tarefa {
                 "Profesor =" + this.professor
         ;
     }
-    
-    
 }
